@@ -13,7 +13,7 @@ public class EmailClient {
 		System.out.print("Enter your email address: ");
 		String email = scn.next();
 		
-		String regex = "^[a-zA-Z0-9-.+_]+@[a-zA-Z0-9-]+[.][a-zA-Z]+$";
+		String regex = "^[a-zA-Z0-9-.+_]+@[a-zA-Z0-9-]+[[.][a-zA-Z]]+$";
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(email);
 		
