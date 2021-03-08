@@ -1,28 +1,28 @@
 package FileManager;
 
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class FileManagerClient {
 	
 	static Scanner scn = new Scanner(System.in);
-	public static void main(String[] args) {
+	public static void main(String[] args) throws CustomException {
 		
 		showWelcomePart();
 		
-		int outerOptionSelected = 1;
+		int option1 = 0;
 		
 		do {
 			System.out.println("--------------------------------------");
 			System.out.print("Enter your directory path: ");
 			String directory = scn.nextLine();
 			File mDir = new File(directory);
-			if(mDir.exists()) {
-				
+			
+			if(mDir.isDirectory()) {
 				System.out.println();
 				System.out.println("Directory does exist");
-				int innerOptionSelected = 0;
+				int option2 = 0;
 				Helper helper = new Helper();
 				
 				do {
@@ -32,15 +32,15 @@ public class FileManagerClient {
 					System.out.println("3. Enter new directory.");
 					System.out.println("4. Quit");
 					System.out.print("Enter your choice: ");
-					innerOptionSelected = Integer.parseInt(scn.nextLine());
+					option2 = getInput();
 					
-					if(innerOptionSelected == 3 || innerOptionSelected == 4) {
+					if(option2 == 3 || option2 == 4) {
 						break;
 					}
 					
-					switch (innerOptionSelected) {
+					switch (option2) {
 						case 1:
-							listAlphabetically(helper, mDir);
+							listAscending(helper, mDir);
 							break;
 						case 2:
 							System.out.println("-------INNER-MENU-------");
@@ -49,6 +49,26 @@ public class FileManagerClient {
 							System.out.println("3. Search for a file.");
 							System.out.println("4. Go back.");
 							System.out.print("Enter your choice: ");
+							int option3 = getInput();
+							
+							switch (option3) {
+								case 1:
+									System.out.print("Enter file name: ");
+									String addFileName = scn.nextLine();
+									createFile(helper, addFileName, directory);
+									break;
+								case 2:
+									System.out.print("Enter file name: ");
+									String deleteFileName = scn.nextLine();
+									deleteFile(helper, deleteFileName, directory);
+									break;
+								case 3:
+									break;
+								case 4:
+									break;
+								default:
+									break;
+							}
 							break;
 						default:
 							System.out.println("Pick correct option!");
@@ -56,41 +76,63 @@ public class FileManagerClient {
 					}
 				} while(true);
 				
-				if(innerOptionSelected == 3) {
-					outerOptionSelected = 1;
-				} else if(innerOptionSelected == 4) {
-					outerOptionSelected = 2;
+				if(option2 == 3) {
+					option1 = 1;
+				} else if(option2 == 4) {
+					option1 = 2;
 				}
-				
 			} else {
-				
 				System.out.println();
 				System.out.println("Directory does not exist");
 				System.out.println("----------MENU----------");
 				System.out.println("1. Re-enter directory path.");
 				System.out.println("2. Quit.");
 				System.out.print("Enter your choice: ");
-				outerOptionSelected = Integer.parseInt(scn.nextLine());
-			
+				option1 = getInput();
 			}
-		} while(outerOptionSelected == 1);
+		} while(option1 == 1);
 	
 		System.out.println("bye!");
 	}
 
+	private static int getInput() throws CustomException {
+		String string = scn.nextLine();
+		if(!(string.charAt(0) >= '0' && string.charAt(0) <= '9')) {
+			throw new CustomException("You didn't enter a valid number!");
+		}
+		return Integer.parseInt(string);
+	}
 	
-	private static void listAlphabetically(Helper helper, File mDir) {
+	private static void listAscending(Helper helper, File mDir) throws CustomException {
 		try {
 			helper.getListOfFiles(mDir);
-		} catch (FileNotFoundException e) {
-			System.out.println("File not found: "+e.getLocalizedMessage());
+		} catch (Exception e) {
+			throw new CustomException("Some exception occured: "+ e.getLocalizedMessage());
+		}
+	}
+	
+	private static void createFile(Helper helper, String fileName, String directory) throws CustomException {
+		try {
+			File mDir = new File(directory+"/"+fileName);
+			helper.createFile(mDir);
+		} catch (Exception e) {
+			throw new CustomException("Some exception occured: "+ e.getLocalizedMessage());
+		}
+	}
+	
+	private static void deleteFile(Helper helper, String fileName, String directory) throws CustomException {
+		try {
+			File mDir = new File(directory+"/"+fileName);
+			helper.deleteFile(mDir);
+		} catch (Exception e) {
+			throw new CustomException("Some exception occured: "+ e.getLocalizedMessage());
 		}
 	}
 	
 	private static void showWelcomePart() {
 		System.out.println("--------------------------------------");
-		System.out.println("|       Welcome to File Manager      |");
-		System.out.println("|     App developed by Rahul Jain    |");
+		System.out.println("        Welcome to File Manager       ");
+		System.out.println("  App developed by Lockers Pvt. Ltd.  ");
 	}
 
 }
