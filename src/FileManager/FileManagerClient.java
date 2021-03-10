@@ -1,7 +1,6 @@
 package FileManager;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.Scanner;
 
 public class FileManagerClient {
@@ -71,6 +70,7 @@ public class FileManagerClient {
 								case 4:
 									break;
 								default:
+									System.out.println("Invalid Choice!");
 									break;
 							}
 							break;

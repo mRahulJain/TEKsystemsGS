@@ -92,7 +92,19 @@ public class Main {
     private static void searchExpenses(ArrayList<Integer> arrayList) {
         int leng = arrayList.size();
         System.out.println("Enter the expense you need to search:\t");
+        Scanner sc = new Scanner(System.in);
+        int toSearch = sc.nextInt();
         //Complete the method
+        
+        arrayList = mergeSort(arrayList, 0, leng-1);
+    
+        if(search(arrayList, toSearch)) {
+        	System.out.println("Yes expense present!");
+        	System.out.println();
+        } else {
+        	System.out.println("No expense not present!");
+        	System.out.println();
+        }
     }
     private static void sortExpenses(ArrayList<Integer> arrayList) {
         int arrlength =  arrayList.size();
@@ -102,7 +114,23 @@ public class Main {
         System.out.println();
     }
     
-	public static ArrayList<Integer> mergeTwoSortedArrays(ArrayList<Integer> one, ArrayList<Integer> two) {
+    private static boolean search(ArrayList<Integer> arrayList, int item) {
+    	int lo = 0;
+		int hi = arrayList.size() - 1;
+		while (lo <= hi) {
+			int mid = (lo + hi) / 2;
+			if (arrayList.get(mid) > item) {
+				hi = mid - 1;
+			} else if (arrayList.get(mid) < item) {
+				lo = mid + 1;
+			} else {
+				return true;
+			}
+		}
+		return false;
+    }
+    
+	private static ArrayList<Integer> mergeTwoSortedArrays(ArrayList<Integer> one, ArrayList<Integer> two) {
 		ArrayList<Integer> mergedArray = new ArrayList<Integer>();
 		int i = 0, j = 0;
 
@@ -132,7 +160,7 @@ public class Main {
 		return mergedArray;
 	}
 
-	public static ArrayList<Integer> mergeSort(ArrayList<Integer> arr, int lo, int hi) {
+	private static ArrayList<Integer> mergeSort(ArrayList<Integer> arr, int lo, int hi) {
 		if (lo == hi) {
 			ArrayList<Integer> recRes = new ArrayList<Integer>();
 			recRes.add(arr.get(lo));
