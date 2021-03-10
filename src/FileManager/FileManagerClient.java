@@ -21,12 +21,13 @@ public class FileManagerClient {
 			
 			if(mDir.isDirectory()) {
 				System.out.println();
-				System.out.println("Directory does exist");
+				System.out.println("Directory exists!");
+				System.out.println();
 				int option2 = 0;
 				Helper helper = new Helper();
 				
 				do {
-					System.out.println("----------MENU----------");
+					System.out.println("----------------MENU------------------");
 					System.out.println("1. List all files.");
 					System.out.println("2. Perform miscellaneous operations.");
 					System.out.println("3. Enter new directory.");
@@ -43,7 +44,7 @@ public class FileManagerClient {
 							listAscending(helper, mDir);
 							break;
 						case 2:
-							System.out.println("-------INNER-MENU-------");
+							System.out.println("-------------INNER-MENU---------------");
 							System.out.println("1. Add a file.");
 							System.out.println("2. Delete a file.");
 							System.out.println("3. Search for a file.");
@@ -63,6 +64,9 @@ public class FileManagerClient {
 									deleteFile(helper, deleteFileName, directory);
 									break;
 								case 3:
+									System.out.print("Enter file name: ");
+									String searchFileName = scn.nextLine();
+									searchFile(helper, searchFileName, mDir);
 									break;
 								case 4:
 									break;
@@ -84,7 +88,8 @@ public class FileManagerClient {
 			} else {
 				System.out.println();
 				System.out.println("Directory does not exist");
-				System.out.println("----------MENU----------");
+				System.out.println();
+				System.out.println("----------------MENU------------------");
 				System.out.println("1. Re-enter directory path.");
 				System.out.println("2. Quit.");
 				System.out.print("Enter your choice: ");
@@ -125,6 +130,14 @@ public class FileManagerClient {
 			File mDir = new File(directory+"/"+fileName);
 			helper.deleteFile(mDir);
 		} catch (Exception e) {
+			throw new CustomException("Some exception occured: "+ e.getLocalizedMessage());
+		}
+	}
+	
+	private static void searchFile(Helper helper, String fileName, File mDir) throws CustomException {
+		try {
+			helper.searchFile(fileName, mDir);
+		} catch(Exception e) {
 			throw new CustomException("Some exception occured: "+ e.getLocalizedMessage());
 		}
 	}
