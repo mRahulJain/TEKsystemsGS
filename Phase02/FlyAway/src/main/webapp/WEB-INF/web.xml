@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>fly-away</display-name>
+  <servlet>
+    <description></description>
+    <display-name>ChangePasswordServlet</display-name>
+    <servlet-name>ChangePasswordServlet</servlet-name>
+    <servlet-class>com.webapp.servlet.ChangePasswordServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChangePasswordServlet</servlet-name>
+    <url-pattern>/ChangePasswordServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AdminLoginVerifyServlet</display-name>
+    <servlet-name>AdminLoginVerifyServlet</servlet-name>
+    <servlet-class>com.webapp.servlet.AdminLoginVerifyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminLoginVerifyServlet</servlet-name>
+    <url-pattern>/AdminLoginVerifyServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MasterPlaceView</display-name>
+    <servlet-name>MasterPlaceView</servlet-name>
+    <servlet-class>com.webapp.servlet.MasterPlaceView</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MasterPlaceView</servlet-name>
+    <url-pattern>/MasterPlaceView</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MasterPlaceServletAdd</display-name>
+    <servlet-name>MasterPlaceServletAdd</servlet-name>
+    <servlet-class>com.webapp.servlet.MasterPlaceServletAdd</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MasterPlaceServletAdd</servlet-name>
+    <url-pattern>/MasterPlaceServletAdd</url-pattern>
+  </servlet-mapping>
+</web-app>
