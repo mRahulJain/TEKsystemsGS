@@ -3,45 +3,41 @@ package com.webapp.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import com.webapp.helper.AdminHibernateHelper;
-import com.webapp.pojo.Place;
+import com.webapp.pojo.Airlines;
 
-public class MasterPlaceView extends HttpServlet {
+public class MasterAirlineView extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Place> places = new AdminHibernateHelper().getPlaces();
+		List<Airlines> airlines = new AdminHibernateHelper().getAirlines();
 		PrintWriter writer = response.getWriter();
 		produceHeader(writer);
 		
 		writer.println("<span id=\"back\">Go <a href=\"AdminFrontPage.jsp\">back?</a></span>");
-		writer.println("<span id=\"add\">Add a <a href=\"AddMasterPlace.jsp\">place?</a></span>");
+		writer.println("<span id=\"add\">Add an <a href=\"AddMasterAirline.jsp\">airline?</a></span>");
 		writer.println("<br/>");
 		writer.println("<br/>");
-		writer.println("<h2>Master Places list");
+		writer.println("<h2>Master Airlines list");
 		writer.println("<br/>");
 		writer.println("<br/>");
 		writer.println("<TABLE>");
 		writer.println("<TR>");
-		writer.println("<TH>Place Id</TH>");
-		writer.println("<TH>Place Name</TH>");
+		writer.println("<TH>Airline Id</TH>");
+		writer.println("<TH>Airline Name</TH>");
 		writer.println("</TR>");
 		
-		for(Place place : places) {
+		for(Airlines airline : airlines) {
 			writer.println("<TR>");
-			writer.println("<TD>" + place.getId() + "</TD>");
-			writer.println("<TD>" + place.getPlace() + "</TD>");
+			writer.println("<TD>" + airline.getId() + "</TD>");
+			writer.println("<TD>" + airline.getName() + "</TD>");
 			writer.println("</TR>");
 		}
 		
 		writer.println("</TABLE>");
-		writer.println("<br/>");
-		writer.println("<br/>");
 		produceFooter(writer);
 	}
 	

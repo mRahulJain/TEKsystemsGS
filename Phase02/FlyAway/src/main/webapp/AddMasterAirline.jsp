@@ -29,13 +29,13 @@
 
 }
 </style>
-<title>Add a place</title>
+<title>Add an airline</title>
 </head>
 <body>
-	<form action="MasterPlaceServletAdd" method="post">
+	<form action="MasterAirlineServletAdd" method="post">
 		<div class="form">
-			<h3>Add a place to Master Place List!</h3>
-			<input type="text" placeholder="Enter Place Name" name="placeName" required>
+			<h3>Add an airline to Master Airline List!</h3>
+			<input type="text" placeholder="Enter Airline Name" name="airlineName" required>
 			<br/>
 			<button type="submit">Add</button>
 			<br/><br/>

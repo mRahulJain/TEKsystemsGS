@@ -16,5 +16,7 @@
         <property name="hbm2ddl.auto">update</property>
         <mapping class="com.webapp.pojo.Admin" />
         <mapping class="com.webapp.pojo.Place" />
+        <mapping class="com.webapp.pojo.Airlines" />
+        <mapping class="com.webapp.pojo.Flight" />
     </session-factory>
 </hibernate-configuration>

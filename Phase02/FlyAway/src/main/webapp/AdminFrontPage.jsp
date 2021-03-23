@@ -29,13 +29,15 @@
 			<button type="submit">View and Edit Place Master List</button>
 		</form>
 		<br/>
-		<form action="" method="post">
+		<form action="MasterAirlineView" method="post">
 			<button type="submit">View and Edit Airlines Master List</button>
 		</form>
 		<br/>
-		<form action="" method="post">
+		<form action="MasterFlightView" method="post">
 			<button type="submit">View and Edit Flights Master List</button>
 		</form>
+		<br/>
+		<span><a href="SearchFlight.jsp">Logout?</a></span>
 	</div>	
 
 </body>

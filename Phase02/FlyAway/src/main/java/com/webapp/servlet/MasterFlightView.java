@@ -10,38 +10,50 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.webapp.helper.AdminHibernateHelper;
-import com.webapp.pojo.Place;
+import com.webapp.pojo.Flight;
 
-public class MasterPlaceView extends HttpServlet {
+public class MasterFlightView extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Place> places = new AdminHibernateHelper().getPlaces();
+		List<Flight> flights = new AdminHibernateHelper().getFlights();
 		PrintWriter writer = response.getWriter();
 		produceHeader(writer);
 		
 		writer.println("<span id=\"back\">Go <a href=\"AdminFrontPage.jsp\">back?</a></span>");
-		writer.println("<span id=\"add\">Add a <a href=\"AddMasterPlace.jsp\">place?</a></span>");
+		writer.println("<span id=\"add\">Add a <a href=\"AddMasterFlight.jsp\">flight?</a></span>");
 		writer.println("<br/>");
 		writer.println("<br/>");
-		writer.println("<h2>Master Places list");
+		writer.println("<h2>Master Flight list");
 		writer.println("<br/>");
 		writer.println("<br/>");
 		writer.println("<TABLE>");
 		writer.println("<TR>");
-		writer.println("<TH>Place Id</TH>");
-		writer.println("<TH>Place Name</TH>");
+		writer.println("<TH>Flight Id</TH>");
+		writer.println("<TH>Airlines Name</TH>");
+		writer.println("<TH>Flight Name</TH>");
+		writer.println("<TH>Flight From</TH>");
+		writer.println("<TH>Flight Departure Time</TH>");
+		writer.println("<TH>Flight To</TH>");
+		writer.println("<TH>Flight Arrival Time</TH>");
+		writer.println("<TH>Flight Fare Economy</TH>");
+		writer.println("<TH>Flight Fare Business</TH>");
 		writer.println("</TR>");
 		
-		for(Place place : places) {
+		for(Flight flight : flights) {
 			writer.println("<TR>");
-			writer.println("<TD>" + place.getId() + "</TD>");
-			writer.println("<TD>" + place.getPlace() + "</TD>");
+			writer.println("<TD>" + flight.getId() + "</TD>");
+			writer.println("<TD>" + flight.getFlightAirline() + "</TD>");
+			writer.println("<TD>" + flight.getFlightName() + "</TD>");
+			writer.println("<TD>" + flight.getFlightFrom() + "</TD>");
+			writer.println("<TD>" + flight.getScheduleDeparture() + "</TD>");
+			writer.println("<TD>" + flight.getFlightTo() + "</TD>");
+			writer.println("<TD>" + flight.getScheduleArrival() + "</TD>");
+			writer.println("<TD>" + flight.getFlightFareEconomy() + "</TD>");
+			writer.println("<TD>" + flight.getFlightFareBusiness() + "</TD>");
 			writer.println("</TR>");
 		}
 		
 		writer.println("</TABLE>");
-		writer.println("<br/>");
-		writer.println("<br/>");
 		produceFooter(writer);
 	}
 	
