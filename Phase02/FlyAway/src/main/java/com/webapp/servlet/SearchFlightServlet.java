@@ -31,31 +31,39 @@ public class SearchFlightServlet extends HttpServlet {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
 
+		if (fareType.equals("Select")) {
+			request.getRequestDispatcher("SearchFlight.jsp").include(request, response);
+			writer.println("<BR/>");
+			writer.println("<BR/>");
+			writer.println("<h2 style=\"color: red;\">Select a class!</h2>");
+			return;
+		}
+
 		if (compareDates(leavingOn, sdf.format(date))) {
-			
+
 			if (helper.checkToAndFrom(leavingFrom, arrivingAt)) {
 				List<Flight> availableFlights = helper.getFlightsBetween(leavingFrom, arrivingAt);
-				
-				if(availableFlights.isEmpty()) {
+
+				if (availableFlights.isEmpty()) {
 					// Either of place do not exist
 					request.getRequestDispatcher("SearchFlight.jsp").include(request, response);
 					writer.println("<BR/>");
 					writer.println("<BR/>");
 					writer.println("<h2 style=\"color: red;\">No flights available.</h2>");
 				} else {
-					if(fareType.equals("Economy")) {
+					if (fareType.equals("Economy")) {
 						request.getRequestDispatcher("SearchFlight.jsp").include(request, response);
 						writer.println("<BR/><BR/>");
-						writer.println("<h2>Flights fetched for "+leavingOn+"</h2>");
+						writer.println("<h2>Flights fetched for " + leavingOn + "</h2>");
 						makeTable(availableFlights, writer, true, numberOfPersons);
-					} else if(fareType.equals("Business")) {
+					} else if (fareType.equals("Business")) {
 						request.getRequestDispatcher("SearchFlight.jsp").include(request, response);
 						writer.println("<BR/><BR/>");
-						writer.println("<h2>Flights fetched for "+leavingOn+"</h2>");
+						writer.println("<h2>Flights fetched for " + leavingOn + "</h2>");
 						makeTable(availableFlights, writer, false, numberOfPersons);
 					}
 				}
-				
+
 			} else {
 				// Either of place do not exist
 				request.getRequestDispatcher("SearchFlight.jsp").include(request, response);
@@ -68,10 +76,11 @@ public class SearchFlightServlet extends HttpServlet {
 			request.getRequestDispatcher("SearchFlight.jsp").include(request, response);
 			writer.println("<BR/>");
 			writer.println("<BR/>");
-			writer.println("<h2 style=\"color: red;\">Please enter date greater than or equal to the present date!</h2>");
+			writer.println(
+					"<h2 style=\"color: red;\">Please enter date greater than or equal to the present date!</h2>");
 		}
 	}
-	
+
 	private static void makeTable(List<Flight> flights, PrintWriter writer, boolean flag, String persons) {
 		writer.println("<BR/>");
 		writer.println("<TABLE>");
@@ -82,33 +91,34 @@ public class SearchFlightServlet extends HttpServlet {
 		writer.println("<TH>Flight Departure Time</TH>");
 		writer.println("<TH>Flight To</TH>");
 		writer.println("<TH>Flight Arrival Time</TH>");
-		if(flag) {
+		if (flag) {
 			writer.println("<TH>Flight Fare (Economy)</TH>");
 		} else {
 			writer.println("<TH>Flight Fare (Business)</TH>");
 		}
 		writer.println("</TR>");
-		for(Flight flight : flights) {
+		for (Flight flight : flights) {
 			writer.println("<TR>");
-			writer.println("<TD>"+flight.getFlightAirline()+"</TD>");
-			writer.println("<TD>"+flight.getFlightName()+"</TD>");
-			writer.println("<TD>"+flight.getFlightFrom()+"</TD>");
-			writer.println("<TD>"+flight.getScheduleDeparture()+"</TD>");
-			writer.println("<TD>"+flight.getFlightTo()+"</TD>");
-			writer.println("<TD>"+flight.getScheduleArrival()+"</TD>");
+			writer.println("<TD>" + flight.getFlightAirline() + "</TD>");
+			writer.println("<TD>" + flight.getFlightName() + "</TD>");
+			writer.println("<TD>" + flight.getFlightFrom() + "</TD>");
+			writer.println("<TD>" + flight.getScheduleDeparture() + "</TD>");
+			writer.println("<TD>" + flight.getFlightTo() + "</TD>");
+			writer.println("<TD>" + flight.getScheduleArrival() + "</TD>");
 			int flightFare = 0;
-			if(flag) {
-				flightFare = Integer.parseInt(persons)*flight.getFlightFareEconomy();
+			if (flag) {
+				flightFare = Integer.parseInt(persons) * flight.getFlightFareEconomy();
 			} else {
-				flightFare = Integer.parseInt(persons)*flight.getFlightFareBusiness();
-				
+				flightFare = Integer.parseInt(persons) * flight.getFlightFareBusiness();
+
 			}
-			writer.println("<TD>Rs. "+flightFare+" (for "+persons+" person(s))</TD>");
-			String href = "UserRegister.jsp?id="+flight.getId()+"&count="+Integer.parseInt(persons)+"&isEco="+flag;
-			writer.println("<TD><a href="+href+">Book?</a></TD>");
+			writer.println("<TD>Rs. " + flightFare + " (for " + persons + " person(s))</TD>");
+			String href = "UserRegister.jsp?id=" + flight.getId() + "&count=" + Integer.parseInt(persons) + "&isEco="
+					+ flag;
+			writer.println("<TD><a href=" + href + ">Book?</a></TD>");
 			writer.println("</TR>");
 		}
-		
+
 		writer.println("</TABLE>");
 		writer.println("");
 	}
