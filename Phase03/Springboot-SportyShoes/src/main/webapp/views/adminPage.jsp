@@ -25,6 +25,8 @@
 </head>
 <body>
 
+	<span>Change <a href="/changePassword">Password?</a></span>
+
 	<div>
 		<h1>Choose your option!</h1>
 		<form action="productList" method="get">

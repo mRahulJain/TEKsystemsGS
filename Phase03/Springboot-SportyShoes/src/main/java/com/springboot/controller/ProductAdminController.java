@@ -104,10 +104,8 @@ public class ProductAdminController {
 				Integer.parseInt(productIsAvailable),
 				productCategory
 		);
-		product.setId(Integer.parseInt(productId));
 		try {
-			this.productService.deleteProduct(Integer.parseInt(productId));
-			this.productService.addProduct(product);
+			this.productService.updateProduct(Integer.parseInt(productId), product);
 			return "redirect:/productList";
 		} catch (Exception e) {
 			response.setContentType("text/html");

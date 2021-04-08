@@ -8,7 +8,7 @@ import com.springboot.pojo.Purchase;
 public interface PurchaseService {
 
 	public void addPurchase(Purchase purchase);
-	public List<Purchase> filterByDate(Date date);
+	public List<Purchase> filterByDate(String date);
 	public List<Purchase> filterByCategory(String category);
 	public List<Purchase> getAllPurchase();
 }

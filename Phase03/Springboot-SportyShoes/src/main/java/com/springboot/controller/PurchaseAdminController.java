@@ -1,8 +1,8 @@
 package com.springboot.controller;
 
+import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +17,7 @@ import com.springboot.repository.PurchaseRepository;
 import com.springboot.service.PurchaseService;
 
 @Controller
-public class PurchaseController {
+public class PurchaseAdminController {
 
 	@Autowired
 	private PurchaseService purchaseService;
@@ -33,9 +33,14 @@ public class PurchaseController {
 	@GetMapping("/filteredPurchaseListDate")
 	public ModelAndView purchaseListByDate(HttpServletRequest request) throws ParseException {
 		ModelAndView modelAndView = new ModelAndView("purchaseList");
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = sdf.parse(request.getParameter("date"));
-		List<Purchase> purchases = this.purchaseService.filterByDate(date);
+		Date date = Date.valueOf(request.getParameter("date"));
+		String[] datePart = date.toString().split("-");
+		String[] month = {"", "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEPT", "OCT", "NOV", "DEC"};
+		String dateString = "";
+		dateString += datePart[2]+"-";
+		dateString += month[Integer.parseInt(datePart[1])]+"-";
+		dateString += datePart[0].substring(2, 4);
+		List<Purchase> purchases = this.purchaseService.filterByDate(dateString);
 		modelAndView.addObject("purchases", purchases);
 		return modelAndView;
 	}

@@ -14,9 +14,9 @@ import com.springboot.pojo.Shopper;
 public interface PurchaseRepository extends JpaRepository<Purchase, Integer> {
 
 	@Query(
-			value = "SELECT * from Purchase where purchase_date = ?1",
+			value = "SELECT * from Purchase where TO_DATE(purchase_date) = ?1",
 			nativeQuery = true)
-	List<Purchase> filterPurchaseByDate(Date date);
+	List<Purchase> filterPurchaseByDate(String date);
 	
 	@Query(
 			value = "SELECT * from Purchase where purchase_category = ?1",

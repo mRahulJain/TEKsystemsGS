@@ -22,9 +22,8 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public void updateProduct(int id, Product product) {
-		this.productRepository.deleteById(id);
 		product.setId(id);
-		this.productRepository.saveAndFlush(product);
+		this.productRepository.save(product);
 	}
 
 	@Override

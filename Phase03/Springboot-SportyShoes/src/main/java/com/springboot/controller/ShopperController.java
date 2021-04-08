@@ -73,6 +73,7 @@ public class ShopperController {
 				);
 				System.out.println(shopper.toString());
 				this.shopperService.addShopper(shopper);
+				currentShopper = this.shopperService.getShopperByUsername(username);
 			} catch(Exception e) {
 				response.setContentType("text/html");
 				response.getWriter().println("<h5 style=\"color: red; text-align:center;\">Username, Email Or Phone Number already registered</h5>");

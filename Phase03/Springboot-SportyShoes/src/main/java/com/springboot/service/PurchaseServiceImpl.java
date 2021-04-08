@@ -21,7 +21,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 	}
 
 	@Override
-	public List<Purchase> filterByDate(Date date) {
+	public List<Purchase> filterByDate(String date) {
 		return this.purchaseRepository.filterPurchaseByDate(date);
 	}
 
