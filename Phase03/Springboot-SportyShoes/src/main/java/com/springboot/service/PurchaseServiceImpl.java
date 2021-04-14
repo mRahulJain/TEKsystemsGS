@@ -34,7 +34,5 @@ public class PurchaseServiceImpl implements PurchaseService {
 	public List<Purchase> getAllPurchase() {
 		return this.purchaseRepository.findAll();
 	}
-
-	
 	
 }

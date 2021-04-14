@@ -11,4 +11,5 @@ public interface PurchaseService {
 	public List<Purchase> filterByDate(String date);
 	public List<Purchase> filterByCategory(String category);
 	public List<Purchase> getAllPurchase();
+
 }
