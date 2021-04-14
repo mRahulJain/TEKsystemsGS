@@ -1,0 +1,43 @@
+.myPage {
+    height: 100vh;
+    width: 100%;
+    background-image: url('./img/food5.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+  }
+.about {
+    font-family: 'Domine', serif;
+    padding-top: 50px;
+    margin-right: 70px;
+    text-align: center;
+    font-size: 1000%;
+    color: white;
+}
+.myPage p {
+    margin-top: 10px;
+    font-family: 'Domine', serif;
+    width: 33%;
+    margin-left: auto;
+    margin-right: 210px;
+    color: aliceblue;
+}
+.social {
+    float: right;
+    margin-right: 230px;
+}
+.social a {
+    color: #000;
+    display: inline-block;
+    width: 55px;
+    height: 55px;
+    border-radius: 30px;
+    line-height: 55px;
+    font-size: 1.3rem;
+    vertical-align: middle;
+    text-align: center;
+  }
+  .social-inner {
+    margin-left: 10px;
+    background-color: #fff;
+  }
