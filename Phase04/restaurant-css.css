@@ -1,0 +1,67 @@
+.carousel-item {
+    background-size: cover;
+    background-position: center center;
+}
+.display-1 {
+  font-family: 'Allura', cursive;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0,0,0,.6);
+}
+.carousel-caption{
+  transform: translateY(-50%);
+  bottom: initial;
+  top: 50%;
+}
+.social {
+  margin-left: 40px;
+}
+.social a {
+  margin-top: 30px;
+  color: #fff;
+  display: inline-block;
+  width: 55px;
+  height: 55px;
+  border-radius: 30px;
+  line-height: 55px;
+  font-size: 1.3rem;
+  vertical-align: middle;
+  text-align: center;
+}
+.social-inner {
+  margin-left: 10px;
+  background-color: rgba(0,0,0,0.4);
+}
+.myPage {
+  height: 100vh;
+  width: 100%;
+  background-image: url('./img/food3.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+.heading {
+  font-family: 'Khand', sans-serif;
+  float: right;
+  margin-top: 30px;
+  margin-right: 40px;
+  text-align: right;
+  color: #fff;
+}
+#mainNav {
+  background-color: #fff;
+  margin-top: 300px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.title h1 {
+  color: red;
+  font-family: 'Staatliches', cursive;
+}
+.navbar-nav-text {
+  font-family: 'IBM Plex Mono', monospace;
+  color: black;
+  margin-left: auto;
+}
+.navbar-nav-text li {
+  margin-left: 8px;
+}
