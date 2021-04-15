@@ -1,0 +1,38 @@
+body {
+    background-color: black;
+}
+.myPage {
+    height: 100vh;
+    width: 100%;
+    background-image: url('./img/food5.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+  }
+.myPage form span h6 {
+    margin-left: 50%;
+    font-family: 'Domine', serif;
+    font-size: 80%;
+    color: darkgray;
+}
+.contact {
+    font-family: 'Domine', serif;
+    margin-right: 70px;
+    text-align: center;
+    font-size: 600%;
+    color: white;
+}
+form div {
+    margin-left: 50%;
+    margin-right: 110px;
+    font-family: 'Domine', serif;
+}
+form button {
+    width: 15%;
+    margin-left: 50%;
+    margin-right: 110px;
+    font-family: 'Domine', serif;
+}
+form div label {
+    color: aliceblue;
+}
