@@ -1,0 +1,21 @@
+<div>
+  <div *ngFor="let question of setQuestion;">
+    <h5 class="display-6 text-info mt-3">Question {{pager.index + 1}} of {{pager.count}}</h5>
+    <hr />
+    <h3 class="display-6 text-dark">
+      {{question.name}}
+    </h3>
+    <br>
+    <div class="col-12 mb-4" *ngFor="let option of question.options">
+      <input type="checkbox" [(ngModel)]="option.selected" (change)="markOption(question, option);" /> {{option.name}}
+    </div>
+  </div>
+  <hr />
+  <div>
+    <button [disabled]="!config.allowBack" class="btn btn-primary mr-2" (click)="navigate(pager.index - 1);">Prev</button>
+    <button [disabled]="!config.allowNext" class="btn btn-primary" (click)="navigate(pager.index + 1);">Next</button>
+  </div>
+  <hr />
+  <button class="btn btn-danger float-right" (click)="onSubmit();">Submit Quiz</button>
+  <button class="btn btn-warning float-right mr-3" (click)="onReview()">Review</button>
+</div>

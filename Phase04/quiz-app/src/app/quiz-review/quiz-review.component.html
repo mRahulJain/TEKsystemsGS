@@ -1,0 +1,11 @@
+<div class="text-center">
+    <h1 class="display-4">Review</h1>
+</div>
+<hr/>
+<div class="col-12 cursor-pointer" *ngFor="let question of quiz.questions; let index = index;">
+    <div
+        class="p-3 mb-2 border {{ checkIfAnswered(question) == 'Answered'? 'bg-success': 'bg-warning' }} rounded">
+        {{index + 1}}. {{ checkIfAnswered(question) }}
+    </div>
+</div>
+<button class="btn btn-primary float-right mr-3 mt-3" (click)="onBack();">Go Back</button>
