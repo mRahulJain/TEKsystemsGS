@@ -1,0 +1,31 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="NegativeTestSuite" verbose="1">
+	<!-- <test name="NegativeTests"> -->
+	<!-- <classes> -->
+	<!-- <class name="com.herokuapp.theinternet.NegativeTests" /> -->
+	<!-- </classes> -->
+	<!-- </test> -->
+
+	<!-- <test name="NegativeTestGroups"> -->
+	<!-- <groups> -->
+	<!-- <run> -->
+	<!-- <include name="smokeTests" /> -->
+	<!-- </run> -->
+	<!-- </groups> -->
+	<!-- <classes> -->
+	<!-- <class name="com.herokuapp.theinternet.NegativeTests" /> -->
+	<!-- </classes> -->
+	<!-- </test> -->
+
+
+	<test name="NegativeTestGroups">
+		<classes>
+			<class name="com.herokuapp.theinternet.NegativeTests">
+				<methods>
+					<include name="incorrectPasswordTest"/>
+				</methods>
+			</class>
+		</classes>
+	</test>
+</suite>

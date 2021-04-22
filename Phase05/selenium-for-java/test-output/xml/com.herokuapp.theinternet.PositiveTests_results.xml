@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="PositiveTests"
+           tests="2"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="38.889">
+  <properties />
+  
+  
+            <testcase name="loginTestEdge" time="19.378" classname="com.herokuapp.theinternet.PositiveTests" />
+                <testcase name="loginTestChrome" time="19.511" classname="com.herokuapp.theinternet.PositiveTests" />
+      
+</testsuite>

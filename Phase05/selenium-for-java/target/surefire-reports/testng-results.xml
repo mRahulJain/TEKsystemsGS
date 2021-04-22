@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2021-04-21T12:35:10Z" name="Surefire suite" finished-at="2021-04-21T12:35:46Z" duration-ms="35755">
+    <groups>
+    </groups>
+    <test started-at="2021-04-21T12:35:10Z" name="Surefire test" finished-at="2021-04-21T12:35:46Z" duration-ms="35755">
+      <class name="com.herokuapp.theinternet.PositiveTests">
+        <test-method signature="loginTestChrome()[pri:0, instance:com.herokuapp.theinternet.PositiveTests@703580bf]" started-at="2021-04-21T12:35:10Z" name="loginTestChrome" finished-at="2021-04-21T12:35:26Z" duration-ms="16269" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginTestChrome -->
+        <test-method signature="loginTestEdge()[pri:0, instance:com.herokuapp.theinternet.PositiveTests@703580bf]" started-at="2021-04-21T12:35:26Z" name="loginTestEdge" finished-at="2021-04-21T12:35:46Z" duration-ms="19460" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginTestEdge -->
+      </class> <!-- com.herokuapp.theinternet.PositiveTests -->
+    </test> <!-- Surefire test -->
+  </suite> <!-- Surefire suite -->
+</testng-results>

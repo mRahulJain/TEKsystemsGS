@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="NegativeTests"
+           tests="2"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="37.716">
+  <properties />
+  
+  
+            <testcase name="incorrectPasswordTest" time="19.149" classname="com.herokuapp.theinternet.NegativeTests" />
+                <testcase name="incorrectUsernameTest" time="18.567" classname="com.herokuapp.theinternet.NegativeTests" />
+      
+</testsuite>
