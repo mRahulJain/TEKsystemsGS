@@ -15,9 +15,4 @@ public interface AccountsRepository extends JpaRepository<Accounts, String> {
 			nativeQuery = true)
 	List<Accounts> getAccountByAccountNumber(String accountNumber);
 	
-	@Query(
-			value = "Update Accounts SET ACCOUNT_IS_NET_BANKING_REG=?1 WHERE ACCOUNT_NUMBER = ?2",
-			nativeQuery = true)
-	void updateNetBankingRegistrationStatus(int status, String accountNumber);
-	
 }

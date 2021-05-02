@@ -1,0 +1,78 @@
+<div class="container pl-5">
+    <div class="row py-5 mt-4 align-items-center myDiv">
+        <div class="col-md-5 ml-5 pr-lg-5 mb-5 mb-md-0 text-center">
+            <img src="../../../../assets/svgTransfer.svg" alt="" class="img-fluid mb-3 d-none d-md-block">
+        </div>
+
+        <div class="col-md-7 col-lg-6 ml-auto">
+            <form action="#">
+                <div class="row">
+                    <div class="input-group col-lg-12 mb-4 text-center">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" [checked]="isChecked" (change)="changed($event)">
+                            <span>
+                                Check to transfer to self
+                            </span>
+                        </div>
+                    </div>
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fas fa-id-card-alt text-muted"></i>
+                            </span>
+                        </div>
+                        <input [(ngModel)]="transferAccountNumber" id="transferAccountNumber" type="text"
+                            name="transferAccountNumber" placeholder="Transfer Account Number"
+                            class="form-control bg-white border-left-0 border-md" required>
+                    </div>
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fas fa-money-check-alt text-muted"></i>
+                            </span>
+                        </div>
+                        <input [(ngModel)]="transferAccountType" id="transferAccountType" type="text"
+                            name="transferAccountType" placeholder="Transfer Account Type (Primary/Savings)"
+                            class="form-control bg-white border-left-0 border-md" required>
+                    </div>
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fas fa-id-card-alt text-muted"></i>
+                            </span>
+                        </div>
+                        <input [(ngModel)]="selfAccountNumber" id="selfAccountNumber" type="text"
+                            name="selfAccountNumber" placeholder="Self Account Number"
+                            class="form-control bg-white border-left-0 border-md" required>
+                    </div>
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fas fa-money-check-alt text-muted"></i>
+                            </span>
+                        </div>
+                        <input [(ngModel)]="selfAccountType" id="selfAccountType" type="text"
+                            name="selfAccountType" placeholder="Self Account Type (Primary/Savings)"
+                            class="form-control bg-white border-left-0 border-md" required>
+                    </div>
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fas fa-rupee-sign text-muted"></i>
+                            </span>
+                        </div>
+                        <input [(ngModel)]="tranferAmount" id="tranferAmount" type="number"
+                            name="tranferAmount" placeholder="Enter Transfer Amount"
+                            class="form-control bg-white border-left-0 border-md" required>
+                    </div>
+
+                    <div class="input-group col-lg-12 mb-4">
+                        <a class="btn btn-success btn-block py-2" (click)="transferMoney()">
+                            <span class="font-weight-bold text-white">Transfer Money</span>
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

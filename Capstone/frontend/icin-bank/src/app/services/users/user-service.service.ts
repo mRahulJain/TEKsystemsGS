@@ -17,4 +17,25 @@ export class UserServiceService {
     let targetURL = '/users/addUser'
     return this.http.post<Message>(this.baseURL+targetURL, user);
   }
+
+  checkUserByIdAndPassword(loginUserId: string, loginUserPassword: string) : Observable<Message> {
+    let targetURL = `/users/check/${loginUserId}/${loginUserPassword}`;
+    return this.http.get<Message>(this.baseURL+targetURL);
+  }
+
+  getUser(loginUserId: string) : Observable<Users> {
+    return this.http.get<Users>(`${this.baseURL}/users/${loginUserId}`);
+  }
+
+  updateLoginPassword(newPassword: string, accountNumber: string) {
+    return this.http.get<Message>(`${this.baseURL}/users/update/loginPassword/${newPassword}/${accountNumber}`)
+  }
+
+  updateTransactionPassword(newPassword: string, accountNumber: string) {
+    return this.http.get<Message>(`${this.baseURL}/users/update/transactionPassword/${newPassword}/${accountNumber}`)
+  }
+
+  requestChequeBook(accountNumber: string) {
+    return this.http.get<Message>(`${this.baseURL}/users/request-cheque-book/${accountNumber}`)
+  }
 }

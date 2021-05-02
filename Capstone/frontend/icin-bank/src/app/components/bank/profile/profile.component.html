@@ -1,0 +1,79 @@
+<div class="container">
+    <div class="row py-5 mt-4 align-items-center myDiv">
+        <div class="col-md-5 pr-lg-5 mb-5 mb-md-0 text-center">
+            <img src="../../../../assets/svgProfile.svg" alt="" class="img-fluid mb-3 d-none d-md-block">
+        </div>
+
+        <div class="col-md-7 col-lg-6 ml-auto">
+            <form action="#">
+                <div class="row">
+                    <small class="col-lg-12">Login User Name</small>
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fas fa-user text-muted"></i>
+                            </span>
+                        </div>
+                        <input readonly [(ngModel)]="userAccountHolderName" id="userAccountHolderName" type="text"
+                            name="userAccountHolderName" placeholder="User Login Id"
+                            class="form-control bg-white border-left-0 border-md" required>
+                    </div>
+
+                    <small class="col-lg-12">Login User Account Number</small>
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fas fa-id-card-alt text-muted"></i>
+                            </span>
+                        </div>
+                        <input readonly [(ngModel)]="userAccountNumber" id="userAccountNumber" type="text"
+                            name="userAccountNumber" placeholder="User Login Id"
+                            class="form-control bg-white border-left-0 border-md" required>
+                    </div>
+
+                    <small class="col-lg-12">Login User Id</small>
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fas fa-id-card-alt text-muted"></i>
+                            </span>
+                        </div>
+                        <input readonly [(ngModel)]="loginUserId" id="loginUserId" type="text" name="loginUserId"
+                            placeholder="User Login Id" class="form-control bg-white border-left-0 border-md" required>
+                    </div>
+
+                    <small class="col-lg-12">Login User Password</small>
+                    <div class="input-group col-lg-6 mb-4">
+                        <div class="input-group-prepend">
+                            <span (click)="onLoginPasswordToggle()"
+                                class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fas fa-lock text-muted"></i>
+                            </span>
+                        </div>
+                        <input [(ngModel)]="loginUserPassword" id="loginUserPassword" type="{{passwordLoginType}}"
+                            name="loginUserPassword" placeholder="Login Password"
+                            class="form-control bg-white border-left-0 border-md" required>
+                        <div class="input-group-prepend">
+                            <span (click)="onLoginPasswordToggle()"
+                                class="input-group-text bg-white px-4 border-md border-left-0">
+                                <i class="{{passwordLoginIcon}} text-muted"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="input-group col-lg-6 mb-4">
+                        <a class="btn btn-primary btn-block py-2" (click)="updateLoginPassword()">
+                            <span class="font-weight-bold text-white">Update</span>
+                        </a>
+                    </div>
+
+                    <div class="input-group col-lg-12 mb-4">
+                        <a class="btn btn-success btn-block py-2" (click)="requestChequeBook()">
+                            <span class="font-weight-bold text-white">Request Cheque Book</span>
+                        </a>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

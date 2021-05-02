@@ -8,6 +8,7 @@ public interface UsersService {
 
 	public Users getUserViaUserId(String loginUserId);
 	public String putUser(Users user);
+	public String updateLoginPassword(String newPassword, String accountNumber);
 	public String checkUserByIdAndPassword(String loginUserId, String loginUserPassword);
 	
 }

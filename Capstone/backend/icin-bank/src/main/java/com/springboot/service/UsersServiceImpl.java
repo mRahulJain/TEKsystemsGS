@@ -37,7 +37,6 @@ public class UsersServiceImpl implements UsersService {
 		if(account.getAccountIsNetBankingReg() == 1) {
 			return "Account already registered!";
 		}
-//		this.accountsRepository.updateNetBankingRegistrationStatus(1, user.getAccountNumber());
 		this.accountsRepository.delete(account);
 		account.setAccountIsNetBankingReg(1);
 		this.accountsRepository.save(account);
@@ -53,11 +52,11 @@ public class UsersServiceImpl implements UsersService {
 				if(user.getAccountLoginPassword().equals(loginUserPassword)) {
 					return "success";
 				} else {
-					return "wrongPassword";
+					return "Password entered is wrong!";
 				}
 			}
 		}
-		return "wrongUserId";
+		return "No such user id exist in our database!";
 	}
 
 	@Override
@@ -69,6 +68,15 @@ public class UsersServiceImpl implements UsersService {
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public String updateLoginPassword(String newPassword, String accountNumber) {
+		Users user = this.usersRepository.getOne(accountNumber);
+		this.usersRepository.delete(user);
+		user.setAccountLoginPassword(newPassword);
+		this.usersRepository.save(user);
+		return "Successfully changed login password!";
 	}
 
 }

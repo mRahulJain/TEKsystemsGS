@@ -10,6 +10,7 @@ export class RouteGuardService implements CanActivate {
 
   constructor(private router: Router, private helperService: HelperService) { }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    console.log(this.helperService.getIsSafe());
     if(this.helperService.getIsSafe()) {
       return true;
     }

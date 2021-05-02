@@ -9,6 +9,5 @@ public interface AccountsService {
 	public List<Accounts> getAllAccounts();
 	public Accounts getAccount(String accountNumber);
 	public boolean isNetBankingReg(String accountNumber);
-	public void updateNetBankingRegistrationStatus(int status, String accountNumber);
 	
 }

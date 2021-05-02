@@ -51,7 +51,7 @@ export class RegistrationComponent implements OnInit {
     }
 
     if (!(this.loginUserPassword1 === this.loginUserPassword2)) {
-      alert('Entered passwords do not match!');
+      alert('Entered login passwords do not match!');
       return;
     }
 

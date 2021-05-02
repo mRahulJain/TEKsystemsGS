@@ -25,11 +25,10 @@ public class Users {
 	@Override
 	public String toString() {
 		return "Users [accountNumber=" + accountNumber + ", accountHolderName=" + accountHolderName
-				+ ", accountLoginUserId=" + accountLoginUserId + ", accountLoginPassword=" + accountLoginPassword + "]";
+				+ ", accountLoginUserId=" + accountLoginUserId + ", accountLoginPassword=" + accountLoginPassword;
 	}
 
-	public Users(String accountNumber, String accountHolderName, String accountLoginUserId,
-			String accountLoginPassword) {
+	public Users(String accountNumber, String accountHolderName, String accountLoginUserId, String accountLoginPassword) {
 		super();
 		this.accountNumber = accountNumber;
 		this.accountHolderName = accountHolderName;

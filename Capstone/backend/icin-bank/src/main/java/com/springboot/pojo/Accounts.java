@@ -16,28 +16,20 @@ public class Accounts {
 	@Column(name = "ACCOUNT_HOLDER_NAME")
 	private String accountHolderName;
 	
-	@Column(name = "ACCOUNT_TYPE")
-	private String accountType;
-	
 	@Column(name = "ACCOUNT_CIF_NUMBER")
 	private String accountCIFNumber;
 	
 	@Column(name = "ACCOUNT_BRANCH")
 	private String accountBranch;
 	
-	@Column(name = "ACCOUNT_BALANCE")
-	private double accountBalance;
-	
 	@Column(name = "ACCOUNT_IS_NET_BANKING_REG")
 	private int accountIsNetBankingReg;
-
-	@Override
-	public String toString() {
-		return "Accounts [accountNumber=" + accountNumber + ", accountHolderName=" + accountHolderName
-				+ ", accountType=" + accountType + ", accountCIFNumber=" + accountCIFNumber + ", accountBranch="
-				+ accountBranch + ", accountBalance=" + accountBalance + ", accountIsNetBankingReg="
-				+ accountIsNetBankingReg + "]";
-	}
+	
+	@Column(name = "ACCOUNT_BALANCE_PRIMARY")
+	private double accountBalancePrimary;
+	
+	@Column(name = "ACCOUNT_BALANCE_SAVINGS")
+	private double accountBalanceSavings;
 
 	public String getAccountNumber() {
 		return accountNumber;
@@ -55,14 +47,6 @@ public class Accounts {
 		this.accountHolderName = accountHolderName;
 	}
 
-	public String getAccountType() {
-		return accountType;
-	}
-
-	public void setAccountType(String accountType) {
-		this.accountType = accountType;
-	}
-
 	public String getAccountCIFNumber() {
 		return accountCIFNumber;
 	}
@@ -78,14 +62,6 @@ public class Accounts {
 	public void setAccountBranch(String accountBranch) {
 		this.accountBranch = accountBranch;
 	}
-
-	public double getAccountBalance() {
-		return accountBalance;
-	}
-
-	public void setAccountBalance(double accountBalance) {
-		this.accountBalance = accountBalance;
-	}
 	
 	public int getAccountIsNetBankingReg() {
 		return accountIsNetBankingReg;
@@ -95,16 +71,40 @@ public class Accounts {
 		this.accountIsNetBankingReg = accountIsNetBankingReg;
 	}
 	
-	public Accounts(String accountNumber, String accountHolderName, String accountType, String accountCIFNumber,
-			String accountBranch, double accountBalance, int accountIsNetBankingReg) {
+	public double getAccountBalancePrimary() {
+		return accountBalancePrimary;
+	}
+
+	public void setAccountBalancePrimary(double accountBalancePrimary) {
+		this.accountBalancePrimary = accountBalancePrimary;
+	}
+
+	public double getAccountBalanceSavings() {
+		return accountBalanceSavings;
+	}
+
+	public void setAccountBalanceSavings(double accountBalanceSavings) {
+		this.accountBalanceSavings = accountBalanceSavings;
+	}
+
+	@Override
+	public String toString() {
+		return "Accounts [accountNumber=" + accountNumber + ", accountHolderName=" + accountHolderName
+				+ ", accountCIFNumber=" + accountCIFNumber + ", accountBranch=" + accountBranch
+				+ ", accountIsNetBankingReg=" + accountIsNetBankingReg + ", accountBalancePrimary="
+				+ accountBalancePrimary + ", accountBalanceSavings=" + accountBalanceSavings + "]";
+	}
+
+	public Accounts(String accountNumber, String accountHolderName, String accountCIFNumber, String accountBranch,
+			int accountIsNetBankingReg, double accountBalancePrimary, double accountBalanceSavings) {
 		super();
 		this.accountNumber = accountNumber;
 		this.accountHolderName = accountHolderName;
-		this.accountType = accountType;
 		this.accountCIFNumber = accountCIFNumber;
 		this.accountBranch = accountBranch;
-		this.accountBalance = accountBalance;
 		this.accountIsNetBankingReg = accountIsNetBankingReg;
+		this.accountBalancePrimary = accountBalancePrimary;
+		this.accountBalanceSavings = accountBalanceSavings;
 	}
 
 	public Accounts() {

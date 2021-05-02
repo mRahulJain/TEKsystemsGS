@@ -42,9 +42,4 @@ public class AccountsServiceImpl implements AccountsService{
 		return false;
 	}
 
-	@Override
-	public void updateNetBankingRegistrationStatus(int status, String accountNumber) {
-		this.accountsRepository.updateNetBankingRegistrationStatus(status, accountNumber);
-	}
-
 }

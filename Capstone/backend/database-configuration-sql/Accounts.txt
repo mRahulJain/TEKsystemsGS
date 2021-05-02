@@ -1,10 +1,10 @@
 create table Accounts (
 ACCOUNT_NUMBER varchar(16) primary key,
 ACCOUNT_HOLDER_NAME varchar(255) not null,
-ACCOUNT_TYPE varchar(255) not null,
 ACCOUNT_CIF_NUMBER varchar(11) not null unique,
 ACCOUNT_BRANCH varchar(255) not null,
-ACCOUNT_BALANCE  number(10,2) not null,
+ACCOUNT_BALANCE_PRIMARY  number(10,2) not null,
+ACCOUNT_BALANCE_SAVINGS  number(10,2) not null,
 ACCOUNT_IS_NET_BANKING_REG number(1) not null
 );
 

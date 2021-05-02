@@ -1,0 +1,7 @@
+.myDiv {
+    height: 74vh;
+}
+.myHoverClass :hover {
+    background: #6c63ff;
+    color: white;
+}
