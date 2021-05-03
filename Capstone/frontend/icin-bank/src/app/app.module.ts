@@ -1,3 +1,5 @@
+import { AdminRoutingService } from './services/admin-routing-services/admin-routing.service';
+import { TransactionsService } from './services/transactions/transactions.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -17,6 +19,13 @@ import { ProfileComponent } from './components/bank/profile/profile.component';
 import { AccountsComponent } from './components/bank/accounts/accounts.component';
 import { AccountService } from './services/account/account.service';
 import { TransferComponent } from './components/bank/transfer/transfer.component';
+import { TransactionsComponent } from './components/bank/transactions/transactions.component';
+import { ChequeBooksComponent } from './components/bank/cheque-books/cheque-books.component';
+import { AdminLoginComponent } from './components/admin/admin-login/admin-login.component';
+import { AdminComponent } from './components/admin/admin/admin.component';
+import { AdminListComponent } from './components/admin/admin-list/admin-list.component';
+import { ChequeRequestsComponent } from './components/admin/cheque-requests/cheque-requests.component';
+import { TransactionRequestsComponent } from './components/admin/transaction-requests/transaction-requests.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +38,15 @@ import { TransferComponent } from './components/bank/transfer/transfer.component
     BankComponent,
     ProfileComponent,
     AccountsComponent,
-    TransferComponent
+    TransferComponent,
+    TransactionsComponent,
+    ChequeBooksComponent,
+    LoginComponent,
+    AdminLoginComponent,
+    AdminComponent,
+    AdminListComponent,
+    ChequeRequestsComponent,
+    TransactionRequestsComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +54,7 @@ import { TransferComponent } from './components/bank/transfer/transfer.component
     FormsModule,
     HttpClientModule
   ],
-  providers: [ UserServiceService, DataService, AccountService ],
+  providers: [ UserServiceService, DataService, AccountService, TransactionsService, AdminRoutingService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

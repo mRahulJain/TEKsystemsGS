@@ -1,5 +1,7 @@
 package com.springboot.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.springboot.pojo.Cheque;
 import com.springboot.pojo.Message;
 import com.springboot.pojo.Users;
 import com.springboot.service.ChequeService;
@@ -48,6 +51,22 @@ public class UsersController {
 	@GetMapping("/users/request-cheque-book/{accountNumber}")
 	public Message requestChequeBook(@PathVariable String accountNumber) {
 		Message message = new Message(this.chequeService.generateChequeBookRequest(accountNumber));
+		return message;
+	}
+	
+	@GetMapping("/users/cheque-books/{accountNumber}")
+	public List<Cheque> getChequeBooksIssuedByAccountNumber(@PathVariable String accountNumber) {
+		return this.chequeService.getAllChequeBookIssued(accountNumber);
+	}
+	
+	@GetMapping("/admin/cheque-books-requests")
+	public List<Cheque> getAllChequeBookRequests() {
+		return this.chequeService.getAllPendingChequeBookRequests();
+	}
+	
+	@GetMapping("/admin/cheque-books-requests/accept/{chequeBookNumber}")
+	public Message acceptChequeBookRequest(@PathVariable String chequeBookNumber) {
+		Message message = new Message(this.chequeService.changeChequeBookStatus(chequeBookNumber));
 		return message;
 	}
 	

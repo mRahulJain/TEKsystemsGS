@@ -14,16 +14,20 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onClick() {
-      
-  }
-
   onDashboard() {
     this.router.navigate(['bank/home']);
   }
 
   onAccounts() {
     this.router.navigate(['bank/accounts']);
+  }
+
+  onChequeBooks() {
+    this.router.navigate(['bank/cheque-books']);
+  }
+
+  onTransaction() {
+      this.router.navigate(['bank/transactions']);
   }
 
   onTransfer() {

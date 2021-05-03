@@ -1,3 +1,5 @@
+import { Transactions } from './../../../model/transactions';
+import { TransactionsService } from './../../../services/transactions/transactions.service';
 import { DataService } from './../../../services/current-user/data.service';
 import { AccountService } from './../../../services/account/account.service';
 import { Component, OnInit } from '@angular/core';
@@ -18,7 +20,11 @@ export class TransferComponent implements OnInit {
   tranferAmount: number = 0;
   myAccount: Accounts;
 
-  constructor(private dataService: DataService, private accountService: AccountService) { }
+  constructor(
+    private dataService: DataService,
+    private accountService: AccountService,
+    private transactionService: TransactionsService
+  ) { }
 
   ngOnInit(): void {
     this.accountService.getAccountByNumber(this.dataService.getUser().accountNumber)
@@ -70,13 +76,38 @@ export class TransferComponent implements OnInit {
     }
 
     if (this.selfAccountType === 'Primary' && this.myAccount.accountBalancePrimary < this.tranferAmount) {
-      alert( `You only have Rs. ${this.myAccount.accountBalancePrimary} in your primary account\nYou need Rs. ${Math.round(this.tranferAmount - this.myAccount.accountBalancePrimary)} more to transfer`);
+      alert(`You only have Rs. ${this.myAccount.accountBalancePrimary} in your primary account\nYou need Rs. ${Math.round(this.tranferAmount - this.myAccount.accountBalancePrimary)} more to transfer`);
       return;
     }
 
     if (this.selfAccountType === 'Savings' && this.myAccount.accountBalanceSavings < this.tranferAmount) {
-      alert( `You only have Rs. ${this.myAccount.accountBalanceSavings} in your savings account\nYou need Rs. ${Math.round(this.tranferAmount - this.myAccount.accountBalanceSavings)} more to transfer!`);
+      alert(`You only have Rs. ${this.myAccount.accountBalanceSavings} in your savings account\nYou need Rs. ${Math.round(this.tranferAmount - this.myAccount.accountBalanceSavings)} more to transfer!`);
       return;
     }
+
+    let transaction = {
+      fromAccountNumber: this.selfAccountNumber,
+      toAccountNumber: this.transferAccountNumber,
+      fromAccountType: this.selfAccountType,
+      toAccountType: this.transferAccountType,
+      transferAmount: this.tranferAmount,
+      transferStatus: 0
+    } as Transactions;
+
+    this.transactionService.putTransaction(transaction)
+    .subscribe(
+      message => {
+        alert(message.message);
+      },
+      error => console.log(error),
+      () => {
+        // this.transferAccountNumber = '';
+        // this.transferAccountType = '';
+        // this.selfAccountNumber = '';
+        // this.selfAccountType = '';
+        // this.tranferAmount = 0;
+        // this.isChecked = false;
+      }
+    )
   }
 }

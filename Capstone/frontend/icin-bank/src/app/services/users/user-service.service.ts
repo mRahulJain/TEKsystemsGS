@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Message } from 'src/app/model/message';
+import { ChequeBooks } from 'src/app/model/cheque-books';
 
 @Injectable({
   providedIn: 'root'
@@ -37,5 +38,17 @@ export class UserServiceService {
 
   requestChequeBook(accountNumber: string) {
     return this.http.get<Message>(`${this.baseURL}/users/request-cheque-book/${accountNumber}`)
+  }
+
+  getChequeBooks(accountNumber: string) : Observable<Array<ChequeBooks>> {
+    return this.http.get<Array<ChequeBooks>>(`${this.baseURL}/users/cheque-books/${accountNumber}`);
+  }
+
+  getAllChequeBookRequests() : Observable<Array<ChequeBooks>> {
+    return this.http.get<Array<ChequeBooks>>(`${this.baseURL}/admin/cheque-books-requests`);
+  }
+
+  acceptChequeBookRequest(chequeBookNumber: string) : Observable<Message> {
+    return this.http.get<Message>(`${this.baseURL}/admin/cheque-books-requests/accept/${chequeBookNumber}`);
   }
 }
