@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { TransactionsService } from './../../../services/transactions/transactions.service';
 import { DataService } from './../../../services/current-user/data.service';
 import { UserServiceService } from './../../../services/users/user-service.service';
@@ -19,7 +20,7 @@ export class TransactionRequestsComponent implements OnInit {
 
   constructor(
     private transactionService: TransactionsService,
-    private dataService: DataService
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -80,6 +81,24 @@ export class TransactionRequestsComponent implements OnInit {
               },
               error => console.log(error)
             )
+        },
+        error => console.log(error)
+      )
+  }
+
+  onBack() {
+    this.router.navigate(['admin/options']);
+  }
+
+  onRefresh() {
+    this.transactionService.getAllPendingTransaction()
+      .subscribe(
+        chequeBooks => {
+          if (chequeBooks.length > 5) {
+            this.allowNext = true;
+          }
+          this.transactions = chequeBooks;
+          this.toShowTransactions = this.transactions.slice(this.current, this.current + 5);
         },
         error => console.log(error)
       )

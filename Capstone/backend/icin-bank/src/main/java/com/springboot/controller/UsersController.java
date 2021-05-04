@@ -48,9 +48,9 @@ public class UsersController {
 		return message;
 	}
 	
-	@GetMapping("/users/request-cheque-book/{accountNumber}")
-	public Message requestChequeBook(@PathVariable String accountNumber) {
-		Message message = new Message(this.chequeService.generateChequeBookRequest(accountNumber));
+	@GetMapping("/users/request-cheque-book/{accountNumber}/{accountType}")
+	public Message requestChequeBook(@PathVariable String accountNumber, @PathVariable String accountType) {
+		Message message = new Message(this.chequeService.generateChequeBookRequest(accountNumber, accountType));
 		return message;
 	}
 	
@@ -69,5 +69,23 @@ public class UsersController {
 		Message message = new Message(this.chequeService.changeChequeBookStatus(chequeBookNumber));
 		return message;
 	}
+	
+	@GetMapping("/users/block/{loginUserId}")
+	public Message blockUser(@PathVariable String loginUserId) {
+		Message message = new Message(this.usersService.blockUser(loginUserId));
+		return message;
+	}
+	
+	@GetMapping("/users/unblock/{loginUserId}")
+	public Message unblockUser(@PathVariable String loginUserId) {
+		Message message = new Message(this.usersService.unblockUser(loginUserId));
+		return message;
+	}
+	
+	@GetMapping("/users/blocked-users")
+	public List<Users> unblockUser() {
+		return this.usersService.getAllBlockedUser();
+	}
+	
 	
 }

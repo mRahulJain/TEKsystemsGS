@@ -23,7 +23,7 @@ export class AdminLoginComponent implements OnInit {
       this.router.navigate(['admin/options']);
       return;
     }
-    alert('Failure');
+    alert('Incorrect Credentials!');
   }
 
 }

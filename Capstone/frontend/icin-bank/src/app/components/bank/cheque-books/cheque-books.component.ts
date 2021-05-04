@@ -23,24 +23,24 @@ export class ChequeBooksComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.getChequeBooks(this.dataService.getUser().accountNumber)
-    .subscribe(
-      chequeBooks => {
-        if(chequeBooks.length > 5) {
-          this.allowNext = true;
-        }
-        this.chequeBooks = chequeBooks;
-        this.current = 0;
-        this.toShowChequeBooks = this.chequeBooks.slice(this.current, this.current+5);
-      },
-      error => console.log(error)
-    )
+      .subscribe(
+        chequeBooks => {
+          if (chequeBooks.length > 5) {
+            this.allowNext = true;
+          }
+          this.chequeBooks = chequeBooks;
+          this.current = 0;
+          this.toShowChequeBooks = this.chequeBooks.slice(this.current, this.current + 5);
+        },
+        error => console.log(error)
+      )
   }
 
   onPrev() {
     this.allowNext = true;
-    this.current = this.current-5;
-    this.toShowChequeBooks = this.chequeBooks.slice(this.current,this.current+5);
-    if(this.current-5<0) {
+    this.current = this.current - 5;
+    this.toShowChequeBooks = this.chequeBooks.slice(this.current, this.current + 5);
+    if (this.current - 5 < 0) {
       this.allowBack = false;
     } else {
       this.allowBack = true;
@@ -49,25 +49,80 @@ export class ChequeBooksComponent implements OnInit {
 
   onNext() {
     this.allowBack = true;
-    this.current = this.current+5;
-    this.toShowChequeBooks = this.chequeBooks.slice(this.current,this.current+5);
-    if(this.current+5>=this.chequeBooks.length) {
+    this.current = this.current + 5;
+    this.toShowChequeBooks = this.chequeBooks.slice(this.current, this.current + 5);
+    if (this.current + 5 >= this.chequeBooks.length) {
       this.allowNext = false;
     } else {
       this.allowNext = true;
     }
   }
 
-  generateDate(date: Date) : string {
-    let myDate = `${date}`.slice(0,10);
+  generateDate(date: Date): string {
+    let myDate = `${date}`.slice(0, 10);
     return myDate;
   }
 
-  generateStatus(code: number) : string {
-    if(code===1) {
+  generateStatus(code: number): string {
+    if (code === 1) {
       return 'Success';
     }
     return 'Pending';
+  }
+
+  requestChequeBookPrimary() {
+    this.userService.requestChequeBook(this.dataService.getUser().accountNumber, 'Primary')
+      .subscribe(
+        message => {
+          alert(message.message);
+          this.userService.getChequeBooks(this.dataService.getUser().accountNumber)
+            .subscribe(
+              chequeBooks => {
+                if (chequeBooks.length > 5) {
+                  this.allowNext = true;
+                }
+                this.chequeBooks = chequeBooks;
+                this.toShowChequeBooks = this.chequeBooks.slice(this.current, this.current + 5);
+              },
+              error => console.log(error)
+            )
+        },
+        error => console.log(error)
+      )
+  }
+  requestChequeBookSavings() {
+    this.userService.requestChequeBook(this.dataService.getUser().accountNumber, 'Savings')
+      .subscribe(
+        message => {
+          alert(message.message);
+          this.userService.getChequeBooks(this.dataService.getUser().accountNumber)
+            .subscribe(
+              chequeBooks => {
+                if (chequeBooks.length > 5) {
+                  this.allowNext = true;
+                }
+                this.chequeBooks = chequeBooks;
+                this.toShowChequeBooks = this.chequeBooks.slice(this.current, this.current + 5);
+              },
+              error => console.log(error)
+            )
+        },
+        error => console.log(error)
+      )
+  }
+
+  onRefresh() {
+    this.userService.getChequeBooks(this.dataService.getUser().accountNumber)
+      .subscribe(
+        chequeBooks => {
+          if (chequeBooks.length > 5) {
+            this.allowNext = true;
+          }
+          this.chequeBooks = chequeBooks;
+          this.toShowChequeBooks = this.chequeBooks.slice(this.current, this.current + 5);
+        },
+        error => console.log(error)
+      )
   }
 
 }

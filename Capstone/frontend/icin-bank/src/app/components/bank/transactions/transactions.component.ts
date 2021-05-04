@@ -1,3 +1,4 @@
+import { AccountService } from './../../../services/account/account.service';
 import { DataService } from './../../../services/current-user/data.service';
 import { TransactionsService } from 'src/app/services/transactions/transactions.service';
 import { Component, OnInit } from '@angular/core';
@@ -18,7 +19,8 @@ export class TransactionsComponent implements OnInit {
 
   constructor(
     private dataService: DataService, 
-    private transactionsService: TransactionsService
+    private transactionsService: TransactionsService,
+    private accountService: AccountService
   ) { }
 
   ngOnInit(): void {
@@ -68,6 +70,39 @@ export class TransactionsComponent implements OnInit {
       return 'Success';
     }
     return 'Pending';
+  }
+
+  checkSelf(accountNumber: string) : string {
+    if(this.dataService.getUser().accountNumber === accountNumber) {
+      return 'Self'
+    }
+    return accountNumber;
+  }
+
+  generateType(from: string, to: string) : string {
+    let curr_acc = this.dataService.getUser().accountNumber;
+    if(to === curr_acc && from === curr_acc) {
+      return '-';
+    }
+    if(to === curr_acc) {
+      return 'Credit'
+    }
+    return 'Debit'
+  }
+
+  onRefresh() {
+    this.transactionsService.getTransactions(this.dataService.getUser().accountNumber)
+    .subscribe(
+      transactions => {
+        if(transactions.length>5) {
+          this.allowNext = true;
+        }
+        this.transactions = transactions;
+        this.current = 0;
+        this.toShowTransactions = this.transactions.slice(this.current,this.current+5);
+      },
+      error => console.log(error)
+    )
   }
 
 }

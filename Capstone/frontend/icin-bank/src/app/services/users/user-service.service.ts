@@ -24,6 +24,18 @@ export class UserServiceService {
     return this.http.get<Message>(this.baseURL+targetURL);
   }
 
+  getAllBlockedUser() : Observable<Array<Users>> {
+    return this.http.get<Array<Users>>(`${this.baseURL}/users/blocked-users`);
+  }
+
+  blockUser(loginUserId: string) : Observable<Message> {
+    return this.http.get<Message>(`${this.baseURL}/users/block/${loginUserId}`);
+  }
+
+  unblockUser(loginUserId: string) : Observable<Message> {
+    return this.http.get<Message>(`${this.baseURL}/users/unblock/${loginUserId}`);
+  }
+
   getUser(loginUserId: string) : Observable<Users> {
     return this.http.get<Users>(`${this.baseURL}/users/${loginUserId}`);
   }
@@ -36,8 +48,8 @@ export class UserServiceService {
     return this.http.get<Message>(`${this.baseURL}/users/update/transactionPassword/${newPassword}/${accountNumber}`)
   }
 
-  requestChequeBook(accountNumber: string) {
-    return this.http.get<Message>(`${this.baseURL}/users/request-cheque-book/${accountNumber}`)
+  requestChequeBook(accountNumber: string, accountType: string) {
+    return this.http.get<Message>(`${this.baseURL}/users/request-cheque-book/${accountNumber}/${accountType}`)
   }
 
   getChequeBooks(accountNumber: string) : Observable<Array<ChequeBooks>> {

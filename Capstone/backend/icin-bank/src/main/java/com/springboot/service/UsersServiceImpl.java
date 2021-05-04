@@ -49,6 +49,9 @@ public class UsersServiceImpl implements UsersService {
 		List<Users> list = this.usersRepository.findAll();
 		for(Users user : list) {
 			if(user.getAccountLoginUserId().equals(loginUserId)) {
+				if(user.getAccountIsBlocked() == 1) {
+					return "failure";
+				}
 				if(user.getAccountLoginPassword().equals(loginUserPassword)) {
 					return "success";
 				} else {
@@ -77,6 +80,29 @@ public class UsersServiceImpl implements UsersService {
 		user.setAccountLoginPassword(newPassword);
 		this.usersRepository.save(user);
 		return "Successfully changed login password!";
+	}
+
+	@Override
+	public String blockUser(String loginUserId) {
+		Users user = this.usersRepository.getUserByLoginUserID(loginUserId).get(0);
+		this.usersRepository.delete(user);
+		user.setAccountIsBlocked(1);
+		this.usersRepository.save(user);
+		return "You account has been blocked!\nPlease contact your nearest ICIN bank!";
+	}
+
+	@Override
+	public String unblockUser(String loginUserId) {
+		Users user = this.usersRepository.getUserByLoginUserID(loginUserId).get(0);
+		this.usersRepository.delete(user);
+		user.setAccountIsBlocked(0);
+		this.usersRepository.save(user);
+		return "Account Unblocked";
+	}
+
+	@Override
+	public List<Users> getAllBlockedUser() {
+		return this.usersRepository.getAllBlockedUser(1);
 	}
 
 }

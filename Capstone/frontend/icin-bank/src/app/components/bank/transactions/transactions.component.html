@@ -1,12 +1,14 @@
-<div class="container">
-    <div class="row py-5 mt-4 align-items-center myDiv">
+<div class="myContainer">
+    <div class="row">
+        <span class="col-2 float-right ml-4 btn btn-warning text-center" (click)="onRefresh()">Refersh List</span>
+    </div>
+    <div class="row py-5 align-items-center myDiv">
         <div class="col-md-12 col-lg-12 ml-auto">
             <table class="table">
                 <tr class="table-active">
                     <th scope="col" class="border-right">#</th>
-                    <th scope="col">Transfer To Account Number</th>
-                    <th scope="col">Transfer To Account Type</th>
-                    <th scope="col">Transfer From Account Type</th>
+                    <th scope="col">Transfer From</th>
+                    <th scope="col">Transfer To</th>
                     <th scope="col">Transfer Amount</th>
                     <th scope="col">Transfer Type</th>
                     <th scope="col">Transfer Date</th>
@@ -14,11 +16,10 @@
                 </tr>
                 <tr *ngFor="let transaction of toShowTransactions">
                     <td scope="row" class="border-right">{{transaction['id']}}</td>
-                    <td>{{transaction['toAccountNumber']}}</td>
-                    <td>{{transaction['toAccountType']}}</td>
-                    <td>{{transaction['fromAccountType']}}</td>
+                    <td>{{checkSelf(transaction['fromAccountNumber'])}}, {{transaction['fromAccountType']}}</td>
+                    <td>{{checkSelf(transaction['toAccountNumber'])}}, {{transaction['toAccountType']}}</td>
                     <td>{{transaction['transferAmount']}}</td>
-                    <td>{{transaction['transferType']}}</td>
+                    <td>{{generateType(transaction['fromAccountNumber'], transaction['toAccountNumber'])}}</td>
                     <td>{{generateDate(transaction['transferDate'])}}</td>
                     <td>{{generateStatus(transaction['transferStatus'])}}</td>
                 </tr>

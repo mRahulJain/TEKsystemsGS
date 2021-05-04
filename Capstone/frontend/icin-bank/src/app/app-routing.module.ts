@@ -1,3 +1,4 @@
+import { AdminBlockAccountsComponent } from './components/admin/admin-block-accounts/admin-block-accounts.component';
 import { AdminRoutingService } from './services/admin-routing-services/admin-routing.service';
 import { TransactionRequestsComponent } from './components/admin/transaction-requests/transaction-requests.component';
 import { ChequeRequestsComponent } from './components/admin/cheque-requests/cheque-requests.component';
@@ -37,6 +38,7 @@ const routes: Routes = [
       children: [
     {path: 'login', component: AdminLoginComponent},
     {path: 'options', component: AdminListComponent},
+    {path: 'blocked-accounts', component: AdminBlockAccountsComponent},
     {path: 'cheque-requests', component: ChequeRequestsComponent},
     {path: 'transaction-requests', component: TransactionRequestsComponent}
   ]}

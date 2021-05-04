@@ -101,12 +101,12 @@ export class TransferComponent implements OnInit {
       },
       error => console.log(error),
       () => {
-        // this.transferAccountNumber = '';
-        // this.transferAccountType = '';
-        // this.selfAccountNumber = '';
-        // this.selfAccountType = '';
-        // this.tranferAmount = 0;
-        // this.isChecked = false;
+        this.transferAccountNumber = '';
+        this.transferAccountType = '';
+        this.selfAccountNumber = '';
+        this.selfAccountType = '';
+        this.tranferAmount = 0;
+        this.isChecked = false;
       }
     )
   }

@@ -1,5 +1,9 @@
-<p class="text-center display-4 mt-4">Transaction Requests</p>
 <div class="myContainer">
+    <div class="row mb-4">
+        <span class="col ml-4 btn btn-danger text-center" (click)="onBack()">Back</span>
+        <span class="col-8 text-center font-weight-bold">Transaction Requests</span>
+        <span class="col mr-4 btn btn-warning text-center" (click)="onRefresh()">Refersh List</span>
+    </div>
     <div class="col-md-12 col-lg-12 ml-auto">
         <table class="table">
             <tr class="table-active">

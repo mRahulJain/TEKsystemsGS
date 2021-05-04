@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
 
   loginUserId: string = '';
   loginUserPassword: string = '';
+  currentLoginCount: number = 3;
 
   constructor(private router: Router, private userService: UserServiceService, private dataService: DataService) { }
 
@@ -36,11 +37,27 @@ export class LoginComponent implements OnInit {
               this.router.navigate(['bank/home']);
             }
           )
+        } else if(message.message === 'failure') {
+          alert(`Your account was blocked in attempt for multiple wrong logins.\nPlease contact your nearest ICIN bank!`);
+          return;
         } else {
-          alert(message.message);
+          if(this.currentLoginCount === 1) {
+            this.userService.blockUser(this.loginUserId)
+            .subscribe(
+              message => alert(message.message),
+              error => console.log(error)
+            )
+            return;
+          }
+          this.currentLoginCount--;
+          alert(`${message.message}\nYou have ${this.currentLoginCount} tries left!`);
         }
       },
-      error => console.log(error)
+      error => console.log(error),
+      () => {
+        this.loginUserId = '';
+        this.loginUserPassword = '';
+      }
     )
   }
 

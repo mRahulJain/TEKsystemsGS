@@ -26,6 +26,7 @@ import { AdminComponent } from './components/admin/admin/admin.component';
 import { AdminListComponent } from './components/admin/admin-list/admin-list.component';
 import { ChequeRequestsComponent } from './components/admin/cheque-requests/cheque-requests.component';
 import { TransactionRequestsComponent } from './components/admin/transaction-requests/transaction-requests.component';
+import { AdminBlockAccountsComponent } from './components/admin/admin-block-accounts/admin-block-accounts.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { TransactionRequestsComponent } from './components/admin/transaction-req
     AdminComponent,
     AdminListComponent,
     ChequeRequestsComponent,
-    TransactionRequestsComponent
+    TransactionRequestsComponent,
+    AdminBlockAccountsComponent
   ],
   imports: [
     BrowserModule,

@@ -13,6 +13,10 @@ export class AdminListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  seeBlockedAccounts() {
+    this.router.navigate(['admin/blocked-accounts']);
+  }
+
   seeChequeBooks() {
     this.router.navigate(['admin/cheque-requests']);
   }

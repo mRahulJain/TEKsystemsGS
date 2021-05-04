@@ -59,7 +59,8 @@ export class RegistrationComponent implements OnInit {
       accountNumber: this.accountNumber,
       accountHolderName: this.firstName + ' ' + this.lastName,
       accountLoginUserId: this.loginUserID,
-      accountLoginPassword: this.loginUserPassword1
+      accountLoginPassword: this.loginUserPassword1,
+      accountIsBlocked: 0
     } as Users
 
     this.userService.putUser(user).subscribe(

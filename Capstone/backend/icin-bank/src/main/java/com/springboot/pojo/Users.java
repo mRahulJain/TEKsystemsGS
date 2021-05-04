@@ -21,20 +21,9 @@ public class Users {
 
 	@Column(name = "ACCOUNT_LOGIN_PASSWORD")
 	private String accountLoginPassword;
-
-	@Override
-	public String toString() {
-		return "Users [accountNumber=" + accountNumber + ", accountHolderName=" + accountHolderName
-				+ ", accountLoginUserId=" + accountLoginUserId + ", accountLoginPassword=" + accountLoginPassword;
-	}
-
-	public Users(String accountNumber, String accountHolderName, String accountLoginUserId, String accountLoginPassword) {
-		super();
-		this.accountNumber = accountNumber;
-		this.accountHolderName = accountHolderName;
-		this.accountLoginUserId = accountLoginUserId;
-		this.accountLoginPassword = accountLoginPassword;
-	}
+	
+	@Column(name = "ACCOUNT_IS_BLOCKED")
+	private int accountIsBlocked;
 
 	public Users() {
 		super();
@@ -70,6 +59,31 @@ public class Users {
 
 	public void setAccountLoginPassword(String accountLoginPassword) {
 		this.accountLoginPassword = accountLoginPassword;
+	}
+
+	public int getAccountIsBlocked() {
+		return accountIsBlocked;
+	}
+
+	public void setAccountIsBlocked(int accountIsBlocked) {
+		this.accountIsBlocked = accountIsBlocked;
+	}
+
+	@Override
+	public String toString() {
+		return "Users [accountNumber=" + accountNumber + ", accountHolderName=" + accountHolderName
+				+ ", accountLoginUserId=" + accountLoginUserId + ", accountLoginPassword=" + accountLoginPassword
+				+ ", accountIsBlocked=" + accountIsBlocked + "]";
+	}
+
+	public Users(String accountNumber, String accountHolderName, String accountLoginUserId, String accountLoginPassword,
+			int accountIsBlocked) {
+		super();
+		this.accountNumber = accountNumber;
+		this.accountHolderName = accountHolderName;
+		this.accountLoginUserId = accountLoginUserId;
+		this.accountLoginPassword = accountLoginPassword;
+		this.accountIsBlocked = accountIsBlocked;
 	}
 	
 }

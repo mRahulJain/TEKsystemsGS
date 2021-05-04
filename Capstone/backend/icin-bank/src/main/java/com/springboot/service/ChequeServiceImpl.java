@@ -14,18 +14,19 @@ public class ChequeServiceImpl implements ChequeService {
 	private ChequeRepository chequeRepository;
 
 	@Override
-	public String generateChequeBookRequest(String accountNumber) {
-		if(isSomeChequeBookRequested(accountNumber).equals("No pending requests")) {
+	public String generateChequeBookRequest(String accountNumber, String accountType) {
+		if(isSomeChequeBookRequested(accountNumber, accountType).equals("No pending requests")) {
 			int count = getChequeBookCount(accountNumber) + 1;
 			Cheque cheque = new Cheque();
 			cheque.setAccountNumber(accountNumber);
 			cheque.setChequeBookNumber(accountNumber+""+count);
+			cheque.setAccountType(accountType);
 			cheque.setChequeBookIssueDate(new Date());
 			cheque.setChequeBookStatus(0);
 			this.chequeRepository.save(cheque);
 			return "Requested for a cheque book for account number - "+accountNumber;
 		} 
-		return "There is already a pending request for cheque book from this account - "+accountNumber;
+		return "There is already a pending request for cheque book from "+accountType+" account - "+accountNumber;
 	}
 
 	@Override
@@ -41,10 +42,10 @@ public class ChequeServiceImpl implements ChequeService {
 	}
 
 	@Override
-	public String isSomeChequeBookRequested(String accountNumber) {
+	public String isSomeChequeBookRequested(String accountNumber, String accountType) {
 		List<Cheque> list = this.chequeRepository.findAll();
 		for(Cheque temp : list) {
-			if(temp.getAccountNumber().equals(accountNumber)) {
+			if(temp.getAccountNumber().equals(accountNumber) && temp.getAccountType().equals(accountType)) {
 				if(temp.getChequeBookStatus() == 0) {
 					return "Already Requested!";
 				}

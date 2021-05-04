@@ -54,12 +54,4 @@ export class ProfileComponent implements OnInit {
       )
   }
 
-  requestChequeBook() {
-    this.userService.requestChequeBook(this.userAccountNumber)
-    .subscribe(
-      message => alert(message.message),
-      error => console.log(error)
-    )
-  }
-
 }

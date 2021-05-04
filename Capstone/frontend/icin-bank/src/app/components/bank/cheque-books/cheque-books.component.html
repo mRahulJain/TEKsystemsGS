@@ -1,24 +1,32 @@
-<div class="container">
-    <div class="row py-5 mt-4 align-items-center myDiv">
+<div class="myContainer">
+    <div class="row">
+        <span class="col-2 float-right ml-4 btn btn-warning text-center" (click)="onRefresh()">Refersh List</span>
+    </div>
+    <div class="row py-5 align-items-center myDiv">
         <div class="col-md-12 col-lg-12 ml-auto">
             <table class="table">
                 <tr class="table-active">
                     <th scope="col" class="border-right">Cheque Book Number</th>
                     <th scope="col">Account Number</th>
+                    <th scope="col">Account Type</th>
                     <th scope="col">Cheque Book Issue Date</th>
                     <th scope="col">Cheque Book Issue Status</th>
                 </tr>
                 <tr *ngFor="let chequeBook of toShowChequeBooks">
                     <td scope="row" class="border-right">{{chequeBook['chequeBookNumber']}}</td>
                     <td>{{chequeBook['accountNumber']}}</td>
+                    <td>{{chequeBook['accountType']}}</td>
                     <td>{{generateDate(chequeBook['chequeBookIssueDate'])}}</td>
                     <td>{{generateStatus(chequeBook['chequeBookStatus'])}}</td>
                 </tr>
             </table>
         </div>
-        <div class="col-md-12 col-lg-12 float-right">
+        <div class="col-md-12 col-lg-12">
             <button [disabled]="!allowBack" class="btn btn-primary mr-2" (click)="onPrev();">Prev</button>
             <button [disabled]="!allowNext" class="btn btn-primary" (click)="onNext();">Next</button>
+
+            <button class="btn btn-success float-right" (click)="requestChequeBookPrimary();">Request Cheque Book for Primary Account</button>
+            <button class="btn btn-success float-right mr-2" (click)="requestChequeBookSavings();">Request Cheque Book for Savings Account</button>
         </div>
     </div>
 </div>

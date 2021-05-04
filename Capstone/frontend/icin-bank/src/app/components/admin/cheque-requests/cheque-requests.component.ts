@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { DataService } from './../../../services/current-user/data.service';
 import { UserServiceService } from './../../../services/users/user-service.service';
 import { ChequeBooks } from './../../../model/cheque-books';
@@ -18,7 +19,8 @@ export class ChequeRequestsComponent implements OnInit {
 
   constructor(
     private userService: UserServiceService,
-    private dataService: DataService
+    private dataService: DataService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -84,4 +86,21 @@ export class ChequeRequestsComponent implements OnInit {
       )
   }
 
+  onBack() {
+    this.router.navigate(['admin/options']);
+  }
+
+  onRefresh() {
+    this.userService.getAllChequeBookRequests()
+      .subscribe(
+        chequeBooks => {
+          if (chequeBooks.length > 5) {
+            this.allowNext = true;
+          }
+          this.chequeBooks = chequeBooks;
+          this.toShowChequeBooks = this.chequeBooks.slice(this.current, this.current + 5);
+        },
+        error => console.log(error)
+      )
+  }
 }
