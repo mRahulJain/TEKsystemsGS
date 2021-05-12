@@ -1,3 +1,4 @@
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserServiceService } from './../../../services/users/user-service.service';
 import { DataService } from './../../../services/current-user/data.service';
 import { Component, OnInit } from '@angular/core';
@@ -18,7 +19,8 @@ export class ChequeBooksComponent implements OnInit {
 
   constructor(
     private dataService: DataService,
-    private userService: UserServiceService
+    private userService: UserServiceService,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit(): void {
@@ -111,18 +113,16 @@ export class ChequeBooksComponent implements OnInit {
       )
   }
 
-  onRefresh() {
-    this.userService.getChequeBooks(this.dataService.getUser().accountNumber)
-      .subscribe(
-        chequeBooks => {
-          if (chequeBooks.length > 5) {
-            this.allowNext = true;
-          }
-          this.chequeBooks = chequeBooks;
-          this.toShowChequeBooks = this.chequeBooks.slice(this.current, this.current + 5);
-        },
-        error => console.log(error)
-      )
+  open(content) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+      console.log(result);
+      if (result === 'Primary') {
+        this.requestChequeBookPrimary();
+      } else {
+        this.requestChequeBookSavings();
+      }
+    }, (reason) => {
+    });
   }
 
 }

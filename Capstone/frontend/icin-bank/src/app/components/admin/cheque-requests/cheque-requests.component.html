@@ -19,7 +19,7 @@
                 <td>{{chequeBook['accountType']}}</td>
                 <td>{{generateDate(chequeBook['chequeBookIssueDate'])}}</td>
                 <td>
-                    <button (click)="allow(chequeBook['chequeBookNumber'])" class="btn btn-danger">ALLOW</button>
+                    <span class="btn btn-danger bg-danger text-center" (click)="allow(chequeBook['chequeBookNumber'])">ALLOW</span>
                 </td>
             </tr>
         </table>

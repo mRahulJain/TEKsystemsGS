@@ -32,7 +32,8 @@ const routes: Routes = [
     {path: 'accounts', component: AccountsComponent},
     {path: 'transfer', component: TransferComponent},
     {path: 'transactions', component: TransactionsComponent},
-    {path: 'cheque-books', component: ChequeBooksComponent}
+    {path: 'cheque-books', component: ChequeBooksComponent},
+    {path: '**', component: LoginComponent}
   ]},
   {path: 'admin', component: AdminComponent, canActivateChild: [AdminRoutingService],
       children: [
@@ -40,8 +41,10 @@ const routes: Routes = [
     {path: 'options', component: AdminListComponent},
     {path: 'blocked-accounts', component: AdminBlockAccountsComponent},
     {path: 'cheque-requests', component: ChequeRequestsComponent},
-    {path: 'transaction-requests', component: TransactionRequestsComponent}
-  ]}
+    {path: 'transaction-requests', component: TransactionRequestsComponent},
+    {path: '**', component: AdminLoginComponent}
+  ]},
+  {path: '**', redirectTo: '/login'}
 ];
 
 @NgModule({

@@ -1,3 +1,4 @@
+import { AdminDataService } from './../../../services/current-admin/admin-data.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminListComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private adminDataService: AdminDataService) { }
 
   ngOnInit(): void {
   }
@@ -23,6 +24,11 @@ export class AdminListComponent implements OnInit {
 
   seeTransactions() {
     this.router.navigate(['admin/transaction-requests']);
+  }
+
+  onLogout() {
+    this.adminDataService.setIsSafe(false);
+    this.router.navigate(['admin/login']);
   }
 
 }

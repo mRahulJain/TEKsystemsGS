@@ -8,7 +8,8 @@ import { Injectable } from '@angular/core';
 })
 export class AccountService {
 
-  private baseURL = 'http://localhost:9090';
+  // private baseURL = 'http://localhost:9090';
+  private baseURL = 'http://icinbank.ap-south-1.elasticbeanstalk.com';
 
   constructor(private http: HttpClient) { }
 

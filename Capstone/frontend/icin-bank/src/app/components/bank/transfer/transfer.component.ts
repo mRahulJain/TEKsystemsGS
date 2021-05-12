@@ -17,8 +17,11 @@ export class TransferComponent implements OnInit {
   transferAccountType: string = '';
   selfAccountType: string = '';
   isChecked: boolean = false;
-  tranferAmount: number = 0;
+  tranferAmount: number;
+  transferMessage: string = '';
   myAccount: Accounts;
+  primaryBalance: number = 0;
+  savingsBalance: number = 0;
 
   constructor(
     private dataService: DataService,
@@ -29,7 +32,12 @@ export class TransferComponent implements OnInit {
   ngOnInit(): void {
     this.accountService.getAccountByNumber(this.dataService.getUser().accountNumber)
       .subscribe(
-        account => this.myAccount = account,
+        account => {
+          this.myAccount = account;
+          this.selfAccountNumber = this.myAccount.accountNumber;
+          this.primaryBalance = this.myAccount.accountBalancePrimary;
+          this.savingsBalance = this.myAccount.accountBalanceSavings;
+        },
         error => console.log(error)
       )
   }
@@ -48,7 +56,8 @@ export class TransferComponent implements OnInit {
     if (this.transferAccountNumber === '' ||
       this.transferAccountType === '' ||
       this.selfAccountNumber === '' ||
-      this.selfAccountType === '') {
+      this.selfAccountType === '' ||
+      this.transferMessage === '') {
       alert('You need to enter all the details above!');
       return;
     }
@@ -91,6 +100,7 @@ export class TransferComponent implements OnInit {
       fromAccountType: this.selfAccountType,
       toAccountType: this.transferAccountType,
       transferAmount: this.tranferAmount,
+      transferMessage: this.transferMessage,
       transferStatus: 0
     } as Transactions;
 
@@ -107,7 +117,24 @@ export class TransferComponent implements OnInit {
         this.selfAccountType = '';
         this.tranferAmount = 0;
         this.isChecked = false;
+        this.transferMessage = '';
       }
     )
+  }
+
+  selectSelfPrimary(event) {
+    if(event.target.checked) {
+      this.selfAccountType = 'Primary';
+    } else {
+      this.selfAccountType = 'Savings';
+    }
+  }
+
+  selectSelfSavings(event) {
+    if(event.target.checked) {
+      this.selfAccountType = 'Savings';
+    } else {
+      this.selfAccountType = 'Primary';
+    }
   }
 }

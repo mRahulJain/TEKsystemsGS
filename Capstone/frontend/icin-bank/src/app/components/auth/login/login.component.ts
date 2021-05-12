@@ -40,7 +40,11 @@ export class LoginComponent implements OnInit {
         } else if(message.message === 'failure') {
           alert(`Your account was blocked in attempt for multiple wrong logins.\nPlease contact your nearest ICIN bank!`);
           return;
-        } else {
+        } else if(message.message === 'no-user') {
+          alert('Username is not registered yet!');
+          return;
+        } 
+        else {
           if(this.currentLoginCount === 1) {
             this.userService.blockUser(this.loginUserId)
             .subscribe(
@@ -50,7 +54,7 @@ export class LoginComponent implements OnInit {
             return;
           }
           this.currentLoginCount--;
-          alert(`${message.message}\nYou have ${this.currentLoginCount} tries left!`);
+          alert(`${message.message}\nYou have ${this.currentLoginCount} attempts left!`);
         }
       },
       error => console.log(error),

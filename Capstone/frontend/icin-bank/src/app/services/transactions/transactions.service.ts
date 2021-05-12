@@ -9,7 +9,8 @@ import { Injectable } from '@angular/core';
 })
 export class TransactionsService {
 
-  private baseURL = 'http://localhost:9090';
+  // private baseURL = 'http://localhost:9090';
+  private baseURL = 'http://icinbank.ap-south-1.elasticbeanstalk.com';
 
   constructor(private http: HttpClient) { }
 
@@ -19,6 +20,10 @@ export class TransactionsService {
 
   getTransactions(accountNumber: string) : Observable<Array<Transactions>> {
     return this.http.get<Array<Transactions>>(`${this.baseURL}/transactions/${accountNumber}`);
+  }
+
+  getFilteredTransactions(accountNumber: string, startDate: Date, endDate: Date) : Observable<Array<Transactions>> {
+    return this.http.get<Array<Transactions>>(`${this.baseURL}/transactions/${accountNumber}/${startDate}/${endDate}`);
   }
 
   getAllPendingTransaction() : Observable<Array<Transactions>> {

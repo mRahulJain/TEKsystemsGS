@@ -27,6 +27,7 @@ import { AdminListComponent } from './components/admin/admin-list/admin-list.com
 import { ChequeRequestsComponent } from './components/admin/cheque-requests/cheque-requests.component';
 import { TransactionRequestsComponent } from './components/admin/transaction-requests/transaction-requests.component';
 import { AdminBlockAccountsComponent } from './components/admin/admin-block-accounts/admin-block-accounts.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { AdminBlockAccountsComponent } from './components/admin/admin-block-acco
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [ UserServiceService, DataService, AccountService, TransactionsService, AdminRoutingService ],
   bootstrap: [AppComponent]

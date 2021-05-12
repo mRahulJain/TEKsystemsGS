@@ -57,9 +57,7 @@ public class ChequeServiceImpl implements ChequeService {
 	@Override
 	public String changeChequeBookStatus(String chequeBookNumber) {
 		Cheque cheque = this.chequeRepository.getOne(chequeBookNumber);
-		this.chequeRepository.delete(cheque);
-		cheque.setChequeBookStatus(1);
-		this.chequeRepository.save(cheque);
+		this.chequeRepository.updateChequeBookStatus(1, chequeBookNumber);
 		return "Cheque Book Request Accepted for account number - "+cheque.getAccountNumber();
 	}
 

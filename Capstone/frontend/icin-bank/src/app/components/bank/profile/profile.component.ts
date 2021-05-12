@@ -15,6 +15,7 @@ export class ProfileComponent implements OnInit {
   userAccountHolderName: string = '';
   passwordLoginIcon: string = 'fas fa-eye-slash';
   passwordLoginType: string = 'password';
+  lockIcon: string = 'fas fa-lock';
 
   constructor(private dataService: DataService, private userService: UserServiceService) { }
 
@@ -30,9 +31,11 @@ export class ProfileComponent implements OnInit {
     if (this.passwordLoginIcon === 'fas fa-eye-slash') {
       this.passwordLoginIcon = 'fas fa-eye';
       this.passwordLoginType = 'text';
+      this.lockIcon = 'fas fa-unlock';
     } else {
       this.passwordLoginIcon = 'fas fa-eye-slash';
       this.passwordLoginType = 'password';
+      this.lockIcon = 'fas fa-lock';
     }
   }
 

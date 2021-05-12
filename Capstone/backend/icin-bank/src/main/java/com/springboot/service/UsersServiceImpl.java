@@ -37,9 +37,7 @@ public class UsersServiceImpl implements UsersService {
 		if(account.getAccountIsNetBankingReg() == 1) {
 			return "Account already registered!";
 		}
-		this.accountsRepository.delete(account);
-		account.setAccountIsNetBankingReg(1);
-		this.accountsRepository.save(account);
+		this.accountsRepository.updateAccountNetBankingStatus(1, account.getAccountNumber());
 		this.usersRepository.save(user);
 		return "Successfully registered!";
 	}
@@ -59,7 +57,7 @@ public class UsersServiceImpl implements UsersService {
 				}
 			}
 		}
-		return "No such user id exist in our database!";
+		return "no-user";
 	}
 
 	@Override
@@ -75,28 +73,19 @@ public class UsersServiceImpl implements UsersService {
 
 	@Override
 	public String updateLoginPassword(String newPassword, String accountNumber) {
-		Users user = this.usersRepository.getOne(accountNumber);
-		this.usersRepository.delete(user);
-		user.setAccountLoginPassword(newPassword);
-		this.usersRepository.save(user);
+		this.usersRepository.updateUserPassword(newPassword, accountNumber);
 		return "Successfully changed login password!";
 	}
 
 	@Override
 	public String blockUser(String loginUserId) {
-		Users user = this.usersRepository.getUserByLoginUserID(loginUserId).get(0);
-		this.usersRepository.delete(user);
-		user.setAccountIsBlocked(1);
-		this.usersRepository.save(user);
+		this.usersRepository.toggleBlockUser(1, loginUserId);
 		return "You account has been blocked!\nPlease contact your nearest ICIN bank!";
 	}
 
 	@Override
 	public String unblockUser(String loginUserId) {
-		Users user = this.usersRepository.getUserByLoginUserID(loginUserId).get(0);
-		this.usersRepository.delete(user);
-		user.setAccountIsBlocked(0);
-		this.usersRepository.save(user);
+		this.usersRepository.toggleBlockUser(0, loginUserId);
 		return "Account Unblocked";
 	}
 

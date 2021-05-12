@@ -42,4 +42,9 @@ public class AccountsServiceImpl implements AccountsService{
 		return false;
 	}
 
+	@Override
+	public void putAccount(Accounts account) {
+		this.accountsRepository.save(account);
+	}
+
 }
